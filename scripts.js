@@ -14,9 +14,10 @@ function divide(a, b) {
     return a / b;
 }
 
-let operator = "";
-let num1 = 0;
-let num2 = 0;
+let operator = null;
+let num1 = null;
+let num2 = null;
+let currentValue = "";
 
 function operate(operator, num1, num2) {
     if(operator === "+"){
@@ -30,7 +31,7 @@ function operate(operator, num1, num2) {
     }
 }
 const display = document.getElementById("display");
-let currentValue = "";
+
 
 const zero = document.getElementById("zero");
 zero.addEventListener("click", () => {
@@ -101,50 +102,79 @@ del.addEventListener("click", () => {
 const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
     currentValue = "";
+    num1 = null;
+    num2 = null;
+    operator = null;
     display.innerHTML = currentValue;
 })
 
 const subtraction = document.getElementById("subtract");
 subtraction.addEventListener("click", () => {
-    num1 = currentValue;
-    currentValue = "";
-    operator = "-";
-    display.innerHTML = "";
-    
+    if (num1 !== null) {
+        num2 = currentValue;
+        currentValue = "";
+        operator = "-";
+        num1 = operate(operator, Number(num1), Number(num2))
+        display.innerHTML = num1;
+    } else {
+        num1 = currentValue;
+        currentValue = "";
+        operator = "-";
+        display.innerHTML = num1;
+    }
 })
 
 const multiplication = document.getElementById("multiply");
 multiplication.addEventListener("click", () => {
-    num1 = currentValue;
-    currentValue = "";
-    operator = "*";
-    display.innerHTML = "";
-    
+    if (num1 !== null) {
+        num2 = currentValue;
+        currentValue = "";
+        operator = "*";
+        num1 = operate(operator, Number(num1), Number(num2))
+        display.innerHTML = num1;
+    } else {
+        num1 = currentValue;
+        currentValue = "";
+        operator = "*";
+        display.innerHTML = num1;
+    }
 })
 
 const division = document.getElementById("divide");
 division.addEventListener("click", () => {
-    num1 = currentValue;
-    currentValue = "";
-    operator = "/";
-    display.innerHTML = "";
-    
+    if (num1 !== null) {
+        num2 = currentValue;
+        currentValue = "";
+        operator = "/";
+        num1 = operate(operator, Number(num1), Number(num2))
+        display.innerHTML = num1;
+    } else {
+        num1 = currentValue;
+        currentValue = "";
+        operator = "/";
+        display.innerHTML = num1;
+    }
 })
 
 const addition = document.getElementById("add");
 addition.addEventListener("click", () => {
-    num1 = currentValue;
-    currentValue = "";
-    operator = "+";
-    display.innerHTML = "";
-    
+    if (num1 !== null) {
+        num2 = currentValue;
+        currentValue = "";
+        operator = "+";
+        num1 = operate(operator, Number(num1), Number(num2))
+        display.innerHTML = num1;
+    } else {
+        num1 = currentValue;
+        currentValue = "";
+        operator = "+";
+        display.innerHTML = num1;
+    }
 })
 
 const equals = document.getElementById("equals");
 equals.addEventListener("click", () => {
     num2 = currentValue;
-    num1 = Number(num1);
-    num2 = Number(num2);
-    display.innerHTML = operate(operator, num1, num2);
+    display.innerHTML = operate(operator, Number(num1), Number(num2));
 })
 
