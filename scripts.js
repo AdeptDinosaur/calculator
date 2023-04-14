@@ -20,6 +20,7 @@ let num2 = null;
 let currentValue = "";
 
 function operate(operator, num1, num2) {
+    document.getElementById("decimal").disabled = false;
     if(operator === "+"){
         return add(num1, num2);
     } else if (operator === "-"){
@@ -29,6 +30,7 @@ function operate(operator, num1, num2) {
     } else if (operator === "/"){
         return divide(num1, num2);
     }
+    
 }
 const display = document.getElementById("display");
 
@@ -93,6 +95,16 @@ nine.addEventListener("click", () => {
     display.innerHTML = currentValue;
 })
 
+const decimal = document.getElementById("decimal");
+decimal.addEventListener("click", () => {
+    currentValue += ".";
+    display.innerHTML = currentValue;
+    if (currentValue.includes(".")) {
+        document.getElementById("decimal").disabled = true;
+    }
+
+})
+
 const del = document.getElementById("delete")
 del.addEventListener("click", () => {
     currentValue = currentValue.substring(0, currentValue.length-1);
@@ -101,6 +113,7 @@ del.addEventListener("click", () => {
 
 const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
+    document.getElementById("decimal").disabled = false;
     currentValue = "";
     num1 = null;
     num2 = null;
@@ -113,10 +126,11 @@ subtraction.addEventListener("click", () => {
     if (num1 !== null) {
         num2 = currentValue;
         currentValue = "";
-        operator = "-";
         num1 = operate(operator, Number(num1), Number(num2))
+        operator = "-";
         display.innerHTML = num1;
     } else {
+        document.getElementById("decimal").disabled = false;
         num1 = currentValue;
         currentValue = "";
         operator = "-";
@@ -129,10 +143,11 @@ multiplication.addEventListener("click", () => {
     if (num1 !== null) {
         num2 = currentValue;
         currentValue = "";
-        operator = "*";
         num1 = operate(operator, Number(num1), Number(num2))
+        operator = "*";
         display.innerHTML = num1;
     } else {
+        document.getElementById("decimal").disabled = false;
         num1 = currentValue;
         currentValue = "";
         operator = "*";
@@ -145,10 +160,11 @@ division.addEventListener("click", () => {
     if (num1 !== null) {
         num2 = currentValue;
         currentValue = "";
-        operator = "/";
         num1 = operate(operator, Number(num1), Number(num2))
+        operator = "/";
         display.innerHTML = num1;
     } else {
+        document.getElementById("decimal").disabled = false;
         num1 = currentValue;
         currentValue = "";
         operator = "/";
@@ -161,10 +177,11 @@ addition.addEventListener("click", () => {
     if (num1 !== null) {
         num2 = currentValue;
         currentValue = "";
-        operator = "+";
         num1 = operate(operator, Number(num1), Number(num2))
+        operator = "+";
         display.innerHTML = num1;
     } else {
+        document.getElementById("decimal").disabled = false;
         num1 = currentValue;
         currentValue = "";
         operator = "+";
