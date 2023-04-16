@@ -22,13 +22,13 @@ let currentValue = "";
 function operate(operator, num1, num2) {
     document.getElementById("decimal").disabled = false;
     if(operator === "+"){
-        return add(num1, num2);
+        return Math.round(add(num1, num2) * 10000) / 10000;
     } else if (operator === "-"){
-        return subtract(num1, num2);
+        return Math.round(subtract(num1, num2) * 10000) / 10000;
     } else if (operator === "*"){
-        return multiply(num1, num2);
+        return Math.round(multiply(num1, num2) * 10000) / 10000;
     } else if (operator === "/"){
-        return divide(num1, num2);
+        return Math.round(divide(num1, num2) * 10000) / 10000;
     }
     
 }
